@@ -1,0 +1,111 @@
+<div class="container card h-100 border-0 shadow py-4 col-sm-10 col-md-10 col-lg-9 mx-auto">
+  <H2 class="text-center"><span class="fas fa-user-plus"></span>  SignUp</H2>
+  <hr>
+  <div class="alert alert-success text-justify alert-dismissible fadeout show" role="alert" *ngIf="message">
+    <button type="button" style="border:none;" (click)="closeMessage()" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{message.message}}
+  </div>
+  
+  <div class="alert alert-dark text-justify alert-dismissible fadeout show" role="alert" *ngIf="error">
+    <button type="button" style="border:none;" (click)="closeError()" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    {{error.error.message}}
+  </div>
+  
+  <form (ngSubmit)="onSaveForm()" [formGroup]="userInfo">
+      <div class="form-row">
+        <div class="col">
+          <fieldset class="form-group">
+              <label>FirstName:</label>
+              <input type="text" [ngClass]="{ 'is-invalid': errorControl.firstName.touched && errorControl.firstName.errors }" formControlName="firstName" placeholder="&#xf031;  Enter Firstname" class="form-control">
+              <div class="invalid-feedback" *ngIf="errorControl.firstName.invalid && (errorControl.firstName.dirty || errorControl.firstName.touched)">
+                <div *ngIf="errorControl.firstName.errors.required">
+                    Firstname is required
+                </div>
+                <div *ngIf="errorControl.firstName.errors.minlength">
+                    Firstname must be at least 3 characters
+                </div>
+              </div>
+            </fieldset>
+        </div>
+        <div class="col">
+          <fieldset class="form-group">
+              <label>LastName:</label>
+              <input type="text" [ngClass]="{ 'is-invalid': errorControl.lastName.touched && errorControl.lastName.errors }" formControlName="lastName" placeholder="&#xf031;  Enter Lastname" class="form-control">
+              <div class="invalid-feedback" *ngIf="errorControl.lastName.invalid && (errorControl.lastName.dirty || errorControl.lastName.touched)">
+                <div *ngIf="errorControl.lastName.errors.required">
+                    Lastname is required
+                </div>
+                <div *ngIf="errorControl.lastName.errors.minlength">
+                    Lastname must be at least 3 characters
+                </div>
+              </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="">
+        <fieldset class="form-group">
+            <label>EmailId:</label>
+            <input type="text" [ngClass]="{ 'is-invalid': errorControl.emailId.touched && errorControl.emailId.errors }" formControlName="emailId" placeholder="&#xf0e0;  Enter Email Id" class="form-control">
+            <div class="invalid-feedback" *ngIf="errorControl.emailId.invalid && (errorControl.emailId.dirty || errorControl.emailId.touched)">
+              <div *ngIf="errorControl.emailId.errors.required">
+                  Email id is required
+              </div>
+              <div *ngIf="errorControl.emailId.errors.email">
+                  Please, Enter valid Email id
+              </div>
+            </div>
+        </fieldset>
+      </div>
+      <div class="">
+        <fieldset class="form-group">
+            <label>Username:</label>
+            <input type="text" [ngClass]="{ 'is-invalid': errorControl.username.touched && errorControl.username.errors }" formControlName="username" placeholder="&#xf007;  Enter Username" class="form-control">
+            <div class="invalid-feedback" *ngIf="errorControl.username.invalid && (errorControl.username.dirty || errorControl.username.touched)">
+              <div *ngIf="errorControl.username.errors.required">
+                  Username is required
+              </div>
+              <div *ngIf="errorControl.username.errors.minlength">
+                  Username must be at least 3 characters
+              </div>
+            </div>
+        </fieldset>
+      </div>
+      <div class="">
+        <fieldset class="form-group">
+            <label>Password:</label>
+            <input type="password" [ngClass]="{ 'is-invalid': errorControl.password.touched && errorControl.password.errors }" formControlName="password" placeholder="&#xf023;  Enter Password" class="form-control">
+            <div class="invalid-feedback" *ngIf="errorControl.password.invalid && (errorControl.password.dirty || errorControl.password.touched)">
+              <div *ngIf="errorControl.password.errors.required">
+                  Password is required
+              </div>
+              <div *ngIf="errorControl.password.errors.minlength">
+                  Password must be at least 3 characters
+              </div>
+            </div>
+        </fieldset>
+      </div>
+      <div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-row">
+            <div class="col-sm4">
+              <input type="submit" [disabled]="!userInfo.valid" class="btn btn-info" name="UserInfoSubmit" value="&#xf234; Save">
+            </div>
+            <div class="col-sm4">
+              <input type="reset" class="btn btn-default" name="UserInfoReset" value="&#xf021; Reset">
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+  <hr>
+  <div class="text-center text-info">
+      <p>Alredy have an account? <a class="text-info" routerLink="/SignIn">Sign in</a></p>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.userList{
+    margin-right: 160px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color:whitesmoke;
+    text-align: center;
+}
+
+.navBox{
+    box-shadow: 0 14px 20px -12px rgba(0,0,0,0.2);
+    background: #FFFFFF;
+}

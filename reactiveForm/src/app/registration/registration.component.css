@@ -1,0 +1,24 @@
+  .example-full-width {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 20px;
+}
+
+H2{
+  text-align: center;
+}
+
+.fileUploder{
+  margin-top: 43px;
+}
+
+.fileError{
+  font-size: 13px;
+}
+
+button:disabled{
+  cursor: not-allowed! important;
+}
+

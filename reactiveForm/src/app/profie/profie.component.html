@@ -1,0 +1,57 @@
+<H1>User Profile</H1>
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    
+    <fieldset class="form-group">
+      <label>FirstName:</label>
+      <input type="text" class="form-control" formControlName="firstName" required/>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label>LastName:</label>
+        <input type="text" class="form-control" formControlName="lastName" />
+    </fieldset>
+  
+    <div formGroupName="address">
+      <H1>Address</H1>
+      <fieldset class="form-group">
+        <label>Street:</label>
+        <input type="text" class="form-control" formControlName="street" />
+      </fieldset>
+      <fieldset class="form-group">
+        <label>City:</label>
+        <input type="text" class="form-control" formControlName="city" />
+      </fieldset>
+      <fieldset class="form-group">
+          <label>State:</label>
+          <input type="text" class="form-control" formControlName="state" />
+      </fieldset>
+      <fieldset class="form-group">
+          <label>Zip Code:</label>
+          <input type="text" class="form-control" formControlName="zip" />
+      </fieldset>
+    </div>
+
+    <div formArrayName="aliases">
+      <H3>Aliases</H3>
+      <button class="btn btn-info" (click)="addAliases()">Add Alias</button>
+      <div *ngFor="let address of aliases.controls; let i=index">
+        <fieldset class="form-group">
+          <label>Alias:</label>
+          <input type="text" class="form-control" [formControlName]="i">
+        </fieldset>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Update Name</button>
+  </form>
+</div>
+
+<div class="container">
+  <p>
+    Form Value : {{profileForm.value | json}}
+  </p>
+  <p>
+    Form Status : {{profileForm.status}}
+  </p>
+</div>

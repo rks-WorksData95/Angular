@@ -1,0 +1,92 @@
+
+<H2>Image Upload</H2>
+<div class="container card h-100 border-0 shadow py-4">
+  <div class="alert alert-success" *ngIf="message">
+    {{message}}
+  </div>
+  <form (ngSubmit)="saveForm()">
+      
+      <div class="row form-group">
+        <div class="col">
+          <div>
+            <section class="example-section">
+              <mat-slide-toggle
+                class="example-margin"
+                (change)="onSliderChnage($event)"
+                [color]="color"
+                [checked]="checked"
+                [disabled]="disabled">
+                Upload Multiple Images!
+              </mat-slide-toggle>
+            </section>
+          </div>
+          &nbsp;
+          <div>
+            <input *ngIf="singleImage" type="file" class="fileUploder" accept="image/png, image/jpeg" (change)="onSelectFile($event)">
+            <input *ngIf="multipleImage" type="file" class="fileUploder" accept="image/png, image/jpeg" (change)="onSelectFile($event)" multiple max="3">
+            <mat-error class="fileError" *ngIf="RequiredFileValidator">Please choose an Image</mat-error>
+            <mat-error class="fileError" *ngIf="fileSizeValidator">File size is not more then  600 KB</mat-error>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-sm-4" *ngIf="singleImage">
+              <img [src]="url" height="120" alt="Profile Image">
+            </div>
+            <div class="col-sm-4" *ngIf="multipleImage">
+              <img [src]="imageUrl" class="rounded" *ngFor="let imageUrl of urls" height="50" width="50" alt="Profile Image">             
+            </div>
+            <div class="col-sm-8">
+              <mat-hint class="fileError">
+                <b>Note:</b>
+                <br/>
+                File size should be 600 KB or below
+              </mat-hint>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr/>
+      </div>
+      <div class="form-group">
+        <button type="submit" mat-raised-button color="primary">
+          <mat-icon aria-hidden="false" aria-label="save">backup</mat-icon>
+          Upload
+        </button>
+      </div>
+  </form>
+</div>
+
+<div class="container card h-100 border-0 shadow py-4" style="margin-top: 3px;">
+  <h1 class="text-lg-center">Image Gallery</h1>
+  <div class="row text-lg-left">
+    <div class="col-lg-3 col-xs-6" *ngFor="let image of images | keyvalue">
+      <!-- <a href="#" class="d-block md-4 h-100">
+        <img class="img-fluid img-thumbnail" [src]="image" style="margin-top:22px;height: 171px;width: fit-content">
+      </a> -->
+
+      <mat-card class="example-card" style="margin-top:22px;">
+          <img mat-card-image [src]="image.value" [alt]="">
+          <mat-card-actions>
+            <div class="card-title text-center">
+              {{image.key}}
+            </div>
+            <div class="text-lg-right">
+              <button (click)="downloadImage(image.key)" mat-mini-fab color="primary">
+                  <mat-icon>cloud_download</mat-icon>
+              </button>
+            </div>
+          </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+</div>
+
+<!-- <mat-card class="example-card">
+    <img mat-card-image src="" alt="Photo of a Shiba Inu">
+    <mat-card-actions>
+      <button mat-button>Download</button> 
+    </mat-card-actions>
+</mat-card> -->

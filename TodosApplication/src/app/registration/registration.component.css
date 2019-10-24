@@ -1,0 +1,30 @@
+/* .ng-invalid:not(form){
+    border-left: 5px solid red;
+} */
+
+.container{
+    margin-top: 2%;
+    width: 70%;
+}
+
+h1{
+    text-align: center;
+    margin-top: 2%;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+input.ng-valid.ng-touched{
+    border: 1px solid green;
+}
+
+small{
+    color: red;
+    display: block;
+}
+
+button:disabled{
+    cursor: not-allowed! important;
+}

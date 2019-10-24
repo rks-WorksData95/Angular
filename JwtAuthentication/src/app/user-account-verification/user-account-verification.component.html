@@ -1,0 +1,22 @@
+<div class="container card h-100 border-0 shadow py-4">
+  
+  <H3 class="text-center">User Account Verification</H3>
+  
+  <hr>
+
+  <div class="text-center">
+    <img *ngIf="accountStatusSuccessMessage" src="/Images/Verified1.gif" height="150" width="150" alt="Verification Logo">
+    <img *ngIf="accountStatusErrorMessage" src="/Images/VerificationFailed.png" height="120" width="120" alt="Verification Failed Logo">
+  </div>
+ 
+  <div class="text-center text-success py-4">
+    <p *ngIf="accountStatusSuccessMessage"><b>Congratulations!</b> <br>{{accountStatusSuccessMessage.message}}</p>
+    <p class="text-danger" *ngIf="accountStatusErrorMessage"><b class="text-danger"> Verification Failed!</b> <br>{{accountStatusErrorMessage.error.message}}</p>
+  </div>
+
+  <div *ngIf="accountStatusSuccessMessage" class="text-center">
+    <!-- <input type="submit" [disabled]="!userInfo.valid" class="btn btn-info" name="UserInfoSubmit" value="SignIn"> -->
+    <a routerLink="/SignIn" class="btn btn-info">Sign In</a>
+  </div>
+
+</div>

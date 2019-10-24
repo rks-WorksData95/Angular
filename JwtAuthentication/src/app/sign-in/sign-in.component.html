@@ -1,0 +1,55 @@
+
+<div class="container card h-100 border-1 shadow py-4 col-sm-9 col-md-5 col-lg-3 mx-auto">
+  <H2 class="text-center">Sign In</H2>
+  <br>
+  <div class="alert alert-dark text-justify alert-dismissible fadeout show" role="alert" *ngIf="message">
+    <button type="button" style="border:none;" (click)="closeMessage()" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{message}}
+    <a class="text-info tokenLink" (click)="generateNewToken()" *ngIf="generateToken">Generate New Token</a>
+    <b><countdown-timer [end]="expireDate"></countdown-timer></b>
+  </div>
+  <form (ngSubmit)="onSignInForm()" [formGroup]="signInInfo">
+      <div class="">
+        <fieldset class="form-group">
+            <!-- <input type="text" [ngClass]="{ 'is-invalid': errorControl.username.touched && errorControl.username.errors, 'is-valid': errorControl.username.touched && errorControl.username.valid }" formControlName="username" placeholder="&#xf007;  Enter Username" class="form-control"> -->
+            <input type="text" [ngClass]="{ 'is-invalid': errorControl.username.touched && errorControl.username.errors }" formControlName="username" placeholder="&#xf007;  Enter Username" class="form-control">
+            <div class="invalid-feedback" *ngIf="errorControl.username.invalid && (errorControl.username.dirty || errorControl.username.touched)">
+                <div *ngIf="errorControl.username.errors.required">
+                  Username is required
+                </div>
+            </div>
+        </fieldset>
+      </div>
+      <div class="">
+        <fieldset class="form-group">
+            <div class="input-group">
+              <input type="{{show}}" [ngClass]="{ 'is-invalid': errorControl.password.touched && errorControl.password.errors }" formControlName="password" placeholder="&#xf023;  Enter Password" class="form-control password">
+              <span class="input-group-append">
+                <button class="btn btn-light passwordEye" (click)="passwordVisibility()" type="button" *ngIf="icon">&#xf070;</button>
+                <button class="btn btn-light passwordEye" (click)="passwordVisibility()" type="button" *ngIf="!icon">&#xf06e;</button>
+              </span>
+              <div class="invalid-feedback" *ngIf="errorControl.password.invalid && (errorControl.password.dirty || errorControl.password.touched)">
+                  <div *ngIf="errorControl.password.errors.required">
+                      Password is required
+                  </div>
+                  <div *ngIf="errorControl.password.errors.minlength">
+                      Password must be at least 3 characters
+                  </div>
+              </div>         
+            </div>
+        </fieldset>
+      </div>
+      <div class="form-group">
+        <input type="submit" [disabled]="!signInInfo.valid" class="form-control" class="btn btn-info btn-block" name="SignInSubmit" value="&#xf090; SignIn">
+      </div>
+  </form>
+  <div class="text-center text-info">
+      <a class="text-info" routerLink="/ForgotPassword"><i class="fas fa-key"></i>   Forgot password?</a>
+  </div>
+  <hr class="hr-text" data-content="OR">
+  <div class="text-center text-info">
+      <p>Don't have an account? <a class="text-info" routerLink="/SignUp">Create one</a></p>
+  </div>
+</div>

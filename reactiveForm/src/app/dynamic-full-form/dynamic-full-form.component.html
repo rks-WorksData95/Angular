@@ -1,0 +1,98 @@
+<H2>Dynamic Full Form</H2>
+<div class="container card h-100 border-0 shadow py-4">
+
+  <div class="alert alert-success" *ngIf="message">{{message}}</div>
+  <div>
+    <div class="form-row">
+      <div class="col-sm-10 form-group">
+        <!-- <label>Number of shows you want to create?</label> -->
+        <input type="number" [(ngModel)]="noOfShows" placeholder="Enter Number Of Shows" class="form-control">
+      </div>
+      <div class="col-sm-2 form-group">
+        <input type="button" (click)="generateShows()" value="Generate Forms" class="btn btn-info ">
+      </div>
+    </div>
+  </div>    
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="dynamicForm">
+    <div formArrayName="movieShow">
+      <div *ngFor="let movieShowField of movieShow.controls; let i=index">
+        <hr>
+        <fieldset>
+          <legend>Movie Show Details {{i+1}}</legend>
+          <div [formGroupName]="i">
+            
+            <div>
+              <fieldset class="form-group">
+                  <label>Screen Name:</label>
+                  <input type="text" formControlName="screenName" placeholder="Enter Screen Name" class="form-control">
+              </fieldset>
+            </div>
+            <div>
+              <fieldset class="form-group">
+                  <label>Movie Name:</label>
+                <input type="text" formControlName="movieName" placeholder="Enter Movie Name" class="form-control">
+              </fieldset>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                    <label>Show Date:</label>
+                    <input type="date" formControlName="showDate" placeholder="Select Show Date" class="form-control">
+                </fieldset>
+              </div>
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label>Start Time:</label>
+                  <input type="time" formControlName="startTime" placeholder="Start Time" class="form-control">
+                </fieldset>
+              </div>
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label>End Time:</label>
+                  <input type="time" formControlName="endTime" placeholder="End Time" class="form-control">
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                    <label>Gold Price:</label>
+                    <input type="number" formControlName="goldPrice" placeholder="Gold Price" class="form-control">
+                </fieldset>
+              </div>
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label>Silver Price:</label>
+                  <input type="number" formControlName="silverPrice" placeholder="Silver Price" class="form-control">
+                </fieldset>
+              </div>
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label>Platinum Price:</label>
+                  <input type="number" formControlName="platinumPrice" placeholder="Platanium Price" class="form-control">
+                </fieldset>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div *ngIf="movieShow.length !== 0">
+      <hr>
+      <fieldset class="form-group">
+        <input type="submit" name="save" [disabled]="!dynamicForm.valid" value="Save" class="btn btn-info space">
+        <input type="reset" name="reset" (click)="resetMovieShow()" value="Reset" class="btn btn-info">
+      </fieldset>
+    </div>
+  </form>
+
+  <!-- <div>
+    {{dynamicForm.value | json}}
+  </div> -->
+
+</div>

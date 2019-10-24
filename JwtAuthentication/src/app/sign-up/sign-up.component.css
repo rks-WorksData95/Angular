@@ -1,0 +1,10 @@
+input:disabled{
+    cursor: not-allowed! important;
+}
+
+.container{
+    background: #ffffff55;
+    color: white;
+    font-family: "FontAwesome","Source Sans Pro";
+}
+  

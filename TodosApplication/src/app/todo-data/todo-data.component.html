@@ -1,0 +1,36 @@
+<H1>Todo</H1>
+
+<div class="container">
+
+    <div class="alert alert-warning" *ngIf='todoForm.dirty && todoForm.invalid'>Enter Valid Value</div>
+    <div class="alert alert-warning" *ngIf='todoForm.dirty && description.invalid'>Enter Valid Description</div>
+    <div class="alert alert-warning" *ngIf='todoForm.dirty && targetDate.invalid'>Enter Valid Target Date</div>
+
+  <form (ngSubmit)='!todoForm.invalid && saveTodo()' #todoForm="ngForm">
+    <fieldset class="form-group">
+      <label>Description</label>
+      <input type="text" #description="ngModel" [(ngModel)]="todo.description" name="description" minlength="5" class="form-control" required="required"/>
+    </fieldset>
+    <fieldset class="form-group">
+      <label>TargetDate</label>
+      <input type="date" #targetDate="ngModel"
+      [ngModel]="todo.targetDate | date:'yyyy-MM-dd'" 
+      (ngModelChange)="todo.targetDate = $event"
+      name="targetDate" class="form-control" required="required"/>
+    </fieldset>
+    <fieldset class="form-group">
+      <label>Is Completed?</label>  
+      <select name="done" [(ngModel)]="todo.done" class="form-control" required="required">
+        <!-- [selected]="todo.done===true" -->
+        <option value="false" >False</option>
+        <option value="true" >True</option>
+      </select>
+    </fieldset>
+    
+    <button type="submit" class="btn btn-info">Save Todo</button>
+    &nbsp;
+    <button (click)="gotoListTodo()" class="btn btn-default">Cancel</button>
+ 
+  </form>
+
+</div>

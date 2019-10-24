@@ -1,0 +1,55 @@
+<div class="container card h-100 border-1 shadow py-4 col-sm-9 col-md-5 col-lg-3 mx-auto">
+  <h2>Welcome To My Site!</h2>
+  <br>
+  <div class="text-center">
+    <a routerLink="/Logout" class="btn btn-info">Sign out</a>
+  </div>
+</div>
+
+<div class="container card h-100 border-1 shadow py-4 col-sm-9 col-md-5 col-lg-3 mx-auto">
+    <h2>Stack</h2>
+    <hr>
+    <div class="alert alert-success text-justify alert-dismissible fadeout show" role="alert" *ngIf="pushElement" [@fadeInOut]>
+      <button type="button" style="border:none;" (click)="closeMessage()" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+      </button> 
+      Pushing Value : {{pushElement}}
+    </div>
+    <div class="alert alert-dark text-justify alert-dismissible fadeout show" role="alert" *ngIf="popElement" [@fadeInOut]>
+      <button type="button" style="border:none;" (click)="closeMessage()" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     Popped Value : {{popElement}}
+    </div>
+    <div class="text-center">
+      <fieldset class="form-group">
+        <input type="text" [(ngModel)]="stackValue" placeholder="Enter stack value" class="form-control" name="stackValue">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="button" (click)="push()" class="btn btn-info" name="push" value="Push">&nbsp;
+        <input type="button" (click)="pop()" [disabled]="stackLength === 0" class="btn btn-info" name="pop" value="Pop">&nbsp;
+        <input type="button" (click)="reset()" [disabled]="stackLength === 0" class="btn btn-info" name="reset" value="Reset">
+      </fieldset>
+      <hr>
+      <div class="form-row">
+        <div class="col">
+          <div class="stack shadow mx-auto" *ngIf="stackLength === 0" [@fadeInOut]>
+              Empty
+          </div>
+          <div class="form-row" *ngFor="let s of stack, let i = index" [@EnterLeave]>
+            <div>{{stackLength - i - 1}}</div>
+            <div class="stack shadow mx-auto"> 
+              {{stack[stackLength - i - 1]}}
+            </div>
+          </div>  
+          <div class="mx-auto">Stack</div>
+        </div>
+        <div class="col">
+          <div class="stack shadow mx-auto" [@fadeInOut]>
+            {{stackLength - 1}}
+          </div>
+          Top
+        </div>
+      </div>
+    </div>
+  </div>

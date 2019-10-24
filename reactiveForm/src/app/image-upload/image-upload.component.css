@@ -1,0 +1,18 @@
+.example-card:hover{
+    transition: box-shadow .6s ease-in;
+	box-shadow: 1px 8px 20px grey;
+}
+
+.example-header-image {
+    background-size: cover;
+}
+
+.example-card {
+    max-width: 250px;
+  }
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}

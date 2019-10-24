@@ -1,0 +1,56 @@
+<H2>Image Upload</H2>
+<div class="container card h-100 border-0 shadow py-4">
+  <div class="alert alert-success" *ngIf="message">
+    {{message}}
+  </div>
+  <form (ngSubmit)="saveForm()"  [formGroup]="userInfo">
+      
+      <div class="row form-group">
+        <div class="col">  
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="newFileName" placeholder="Enter Filename">  
+          </div>
+          <div>
+            <input type="file" class="fileUploder" formControlName="uploadFileName" accept="image/png, image/jpeg" (change)="onSelectFile($event)">
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-sm-4">
+              <img [src]="url" height="120" alt="Profile Image">
+            </div>
+            <div class="col-sm-8">
+              <mat-hint class="fileError">
+                <b>Note:</b>
+                <br/>
+                File size should be 600 KB or below
+              </mat-hint>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr/>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="!userInfo.valid"  mat-raised-button color="primary">
+          <mat-icon aria-hidden="false" aria-label="save">backup</mat-icon>
+          Upload
+        </button>
+      </div>
+  </form>
+</div>
+
+<div class="container card h-100 border-0 shadow py-4" style="margin-top: 3px;">
+  <h1 class="text-lg-center">Image Gallery</h1>
+  <div class="row text-lg-left">
+    <div class="col-lg-3 col-xs-6" *ngFor="let image of images | keyvalue">
+      <a href="#" class="d-block md-4 h-100">
+        <img class="img-fluid img-thumbnail" [src]="image.value" [alt]="image.key" style="margin-top:22px;height: 171px;width: fit-content">
+      </a>
+      <!-- <mat-card class="example-card" style="margin-top:22px;">
+          <img mat-card-image [src]="image.value" [alt]="">
+      </mat-card> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.container{
+    background: #ffffff55;
+    color: white;
+    margin-top: 3%;
+}
+
+.stack{
+    display: block;
+    border: 2px solid goldenrod;
+    background: white;
+    width: 90px;
+    color: black;
+}
+
+h2{
+    text-align: center;
+}
+
+input:disabled{
+    cursor: not-allowed! important;
+}
+
+.row{
+    text-align: center;
+}

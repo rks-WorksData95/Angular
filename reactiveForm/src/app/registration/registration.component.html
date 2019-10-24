@@ -1,0 +1,88 @@
+<H2>User Registration</H2>
+<div class="container card h-100 border-0 shadow py-4">
+  <form (ngSubmit)="saveForm()" [formGroup]="userInfo" >
+      <div class="row form-group">
+        <div class="col form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="firstName" placeholder="Enter firstname">
+              <mat-error *ngIf="hasError('firstName', 'required')">Firstname is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="lastName" placeholder="Enter lastname">
+              <mat-error *ngIf="hasError('lastName', 'required')">Lastname is required</mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="emailId" placeholder="Enter emailid">
+          <mat-error *ngIf="hasError('emailId', 'required')">EmailId is required</mat-error>
+          <mat-error *ngIf="hasError('emailId', 'email')">Enter valid email id</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <textarea matInput formControlName="address" rows="3" placeholder="Enter address"></textarea>
+          <mat-hint>Not more then 60 cherecters long.</mat-hint>
+          <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+          <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 60 charecters</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="dateOfBirth" readonly (click)="picker.open()" placeholder="Choose a date of birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi startView="multi-year" #picker></mat-datepicker>
+          <mat-error *ngIf="hasError('dateOfBirth', 'required')">Date of birth is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-radio-group formControlName="gender" aria-label="Select an gender">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Select hobby" formControlName="hobby">
+            <mat-option *ngFor="let hobby of hobbys" [value]="hobby">
+              {{hobby}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('hobby', 'required')">Please choose an hobby</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row form-group">
+        <div class="col">
+          <input type="file" class="fileUploder" accept="image/png, image/jpeg" (change)="onSelectFile($event)">
+          <mat-error class="fileError" *ngIf="RequiredFileValidator">Please choose an Image</mat-error>
+          <mat-error class="fileError" *ngIf="fileSizeValidator">File size is not more then  600 KB</mat-error>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-sm-4">
+              <img [src]="url" height="120" alt="Profile Image">
+            </div>
+            <div class="col-sm-8">
+              <mat-hint class="fileError">
+                <b>Note:</b>
+                <br/>
+                File size should be 600 KB or below
+              </mat-hint>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr/>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="!userInfo.valid || !RequiredFileValidatorSubmit || !fileSizeValidatorSubmit" mat-raised-button color="primary">
+          <mat-icon aria-hidden="false" aria-label="save">save</mat-icon>
+          Register
+        </button>
+      </div>
+  </form>
+</div>
